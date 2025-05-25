@@ -1,0 +1,195 @@
+.wrapper {
+    width: 420px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(30px);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: height .2s ease;
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper.forgot {
+    height: 320px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    translate: -500px;
+}
+
+.wrapper.forgot .form-box.login {
+    transition: none;
+    translate: -500px;
+}
+
+.wrapper .form-box.register {
+    width: 80%;
+    position: absolute;
+    padding: 20px;
+    translate: 500px;
+}
+
+.wrapper .form-box.forgot {
+    width: 80%;
+    position: absolute;
+    padding: 20px;
+    translate: -500px;
+}
+
+.wrapper.active .form-box.register {
+    transition: translate .18s ease;
+    translate: 0;
+}
+
+.wrapper.forgot .form-box.forgot {
+    transition: translate .18s ease;
+    translate: 0;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.error-msg {
+    color: red;
+    margin-top: 5px;
+    padding: 5px 20px 10px 45px;
+    min-height: 20px; /* Reservar espacio para el mensaje */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.error-msg.visible {
+    opacity: 1;
+}
+
+.error-msg-signup {
+    color: red;
+    margin-top: 5px;
+    padding: 5px 5px 10px 55px;
+    min-height: 20px; /* Reservar espacio para el mensaje */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.error-msg-signup.visible {
+    opacity: 1;
+}
+
+.error-msg-forgot {
+    color: red;
+    margin-top: 5px;
+    padding: 5px 5px 15px 25px;
+    min-height: 20px; /* Reservar espacio para el mensaje */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.error-msg-forgot.visible {
+    opacity: 1;
+}
+
+.wrapper .form-box.register .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;   
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-70%);
+    font-size: 16px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 4px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}

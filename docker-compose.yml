@@ -1,0 +1,19 @@
+version: '3'
+services:
+  backend:
+    image: arq-web-backend-img
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  frontend:
+    image: arq-web-frontend-img
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
