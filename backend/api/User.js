@@ -120,9 +120,11 @@ router.post("/forgot-password", async (req, res) => {
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
                 res.status(500).send({message: "Error en el envío del correo!" })
-            } 
+            } else {
+                res.status(200).send({message: "Correo enviado con éxito!"})
+            }
         });
-        res.status(200).send({message: "Correo enviado con éxito!"})
+        
     } catch (error) {
         res.status(500).send({message: "Error interno del servidor!" })
     }
