@@ -9,6 +9,15 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - image: sdifrancisco28/mern-frontend
+            dockerfile: frontend/Dockerfile
+          - image: sdifrancisco28/mern-backend
+            dockerfile: backend/Dockerfile
+          - image: sdifrancisco28/mern-mongodb
+            dockerfile: backend/mongo/Dockerfile
 
     steps:
       - name: Checkout repository
@@ -24,31 +33,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5.7.0
         with:
-          images: ${{ github.repository }}
+          images: ${{ matrix.image }}
 
-      - name: Build and push frontend image
+      - name: Build and push
         uses: docker/build-push-action@v6.17.0
         with:
-          context: ./frontend
-          file: Dockerfile
+          context: .
+          file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/mern-frontend:${{ github.sha }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Build and push backend image
-        uses: docker/build-push-action@v6.17.0
-        with:
-          context: ./backend
-          file: Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USER }}/mern-backend:${{ github.sha }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6.17.0
-        with:
-          context: ./backend/mongo
-          file: Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USER }}/mern-mongodb:${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
