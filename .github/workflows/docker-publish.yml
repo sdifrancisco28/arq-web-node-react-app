@@ -12,12 +12,18 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: sdifrancisco28/mern-frontend
+          - name: frontend
+            image: sdifrancisco28/mern-frontend
             dockerfile: frontend/Dockerfile
-          - image: sdifrancisco28/mern-backend
+            context: frontend
+          - name: backend
+            image: sdifrancisco28/mern-backend
             dockerfile: backend/Dockerfile
-          - image: sdifrancisco28/mern-mongodb
+            context: backend
+          - name: mongodb
+            image: sdifrancisco28/mern-mongodb
             dockerfile: backend/mongo/Dockerfile
+            context: backend/mongo
 
     steps:
       - name: Checkout repository
@@ -38,7 +44,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6.17.0
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
